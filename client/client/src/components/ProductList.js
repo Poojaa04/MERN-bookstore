@@ -44,6 +44,7 @@ const ProductList = () => {
 	return (
 		<div className="prdt-list">
 			<h2 style={{ color: "green" }}>Book List</h2>
+        
 			<div className="filter-btn">
 				<button onClick={handleSortByPrice}>Sort by Price</button>
 				<label>
@@ -62,6 +63,7 @@ const ProductList = () => {
 						onChange={(e) => setMaxPrice(Number(e.target.value))}
 					/>
 				</label>
+                
 				<button onClick={() => handleFilterByPriceRange()}>
 					Filter by Price Range
 				</button>
