@@ -11,13 +11,17 @@ const Header = () => {
 	return (
 		<div className="header">
 			<h1 className="gfg">Book Store </h1>
-			<h3 style={{ color: "green" }}>Total Price: {totalPrice}</h3>
+            <div className="cart">
+                <h3 style={{ color: "black" }}>Total Price: {totalPrice}</h3>
 
-			<div className="cart-num">
+			  <div className="cart-num">
 				<div className="cart-items">{itemsInCart}</div>
 
 				<FontAwesomeIcon icon={faCartShopping} size="4x" />
-			</div>
+			 </div>
+
+           </div>
+			
 		</div>
 	);
 };

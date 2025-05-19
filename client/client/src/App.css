@@ -17,13 +17,21 @@
 
 .header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    gap:300px;
     align-items: center;
     padding: 10px;
     border-bottom: 1px sold #ccc;
-
+    background-color: beige;
 }
 
+.cart{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+
+}
 
 /* card */
 /* client/src/components/ProductItem.css */
@@ -111,7 +119,7 @@ h2 {
 }
 
 .gfg {
-    background-color: green;
+    background-color: black;
     color: white;
     padding: 5px 10px;
     border-radius: 10px;

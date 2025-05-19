@@ -43,7 +43,7 @@ const ProductList = () => {
 
 	return (
 		<div className="prdt-list">
-			<h2 style={{ color: "green" }}>Book List</h2>
+			<h2 style={{ color: "black" }}>Book List</h2>
         
 			<div className="filter-btn">
 				<button onClick={handleSortByPrice}>Sort by Price</button>
@@ -63,7 +63,7 @@ const ProductList = () => {
 						onChange={(e) => setMaxPrice(Number(e.target.value))}
 					/>
 				</label>
-                
+
 				<button onClick={() => handleFilterByPriceRange()}>
 					Filter by Price Range
 				</button>
@@ -76,6 +76,7 @@ const ProductList = () => {
 						<option value="all">All</option>
 						<option value="Fiction">Fiction</option>
 						<option value="Dystopian">Dystopian</option>
+                        <option value="Self Help">Self Help</option>
 						{/* Add more options as needed */}
 					</select>
 				</label>
