@@ -4,16 +4,13 @@ import { createContext, useEffect, useState } from "react";
 
 const itemContext = createContext();
 
-// creating custom provider
 function CustomItemContext({ children }) {
 	const [products, setProducts] = useState([]);
 	const [cart, setCart] = useState([]);
 	const [itemsInCart, setItemsInCart] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
 
-	// useEffect to load all the vegetables
 	useEffect(() => {
-		// Fetch products from the backend and dispatch 'SET_PRODUCTS' action
 		const fetchData = async () => {
 			const response = await fetch("http://localhost:5000/api/books");
 			const products = await response.json();
@@ -25,37 +22,63 @@ function CustomItemContext({ children }) {
 	}, []);
 
 	const addToCart = (product) => {
-		setTotalPrice(totalPrice + product.price);
-		setCart([...cart, product]);
-		setItemsInCart(itemsInCart + 1);
+		const existingItem = cart.find(item => item._id === product._id);
+		if (existingItem) {
+			const updatedCart = cart.map(item =>
+				item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
+			);
+			setCart(updatedCart);
+		} else {
+			setCart([...cart, { ...product, quantity: 1 }]);
+		}
+		setItemsInCart(prev => prev + 1);
+		setTotalPrice(prev => prev + product.price);
 	};
 
 	const removeFromCart = (product) => {
-		const index = cart.findIndex((prdt) => prdt._id === product._id);
-		console.log(index);
+		const existingItem = cart.find(item => item._id === product._id);
+		if (!existingItem) return;
 
-		if (index !== -1) {
-			// Item found in the cart
-			// Now you can remove it from the cart array
-			const updatedCart = [...cart];
-			updatedCart.splice(index, 1);
-			setTotalPrice(totalPrice - cart[index].price);
+		if (existingItem.quantity === 1) {
+			const updatedCart = cart.filter(item => item._id !== product._id);
 			setCart(updatedCart);
-			setItemsInCart(itemsInCart - 1);
 		} else {
-			console.log("Item not found in the cart");
+			const updatedCart = cart.map(item =>
+				item._id === product._id ? { ...item, quantity: item.quantity - 1 } : item
+			);
+			setCart(updatedCart);
 		}
+		setItemsInCart(prev => Math.max(prev - 1, 0));
+		setTotalPrice(prev => Math.max(prev - product.price, 0));
+	};
+
+	const updateQuantity = (id, newQty) => {
+		if (newQty < 1) return;
+
+		const item = cart.find(item => item._id === id);
+		if (!item) return;
+
+		const oldQty = item.quantity;
+		const updatedCart = cart.map(item =>
+			item._id === id ? { ...item, quantity: newQty } : item
+		);
+		setCart(updatedCart);
+
+		const quantityDiff = newQty - oldQty;
+		setItemsInCart(prev => prev + quantityDiff);
+		setTotalPrice(prev => prev + quantityDiff * item.price);
 	};
 
 	return (
-		// default provider
 		<itemContext.Provider
 			value={{
 				products,
 				addToCart,
 				removeFromCart,
+				updateQuantity,
 				itemsInCart,
 				totalPrice,
+				cartItems: cart, // ✅ Exposed for CartPage.js
 			}}
 		>
 			{children}

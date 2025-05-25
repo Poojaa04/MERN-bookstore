@@ -1,38 +1,174 @@
 /*App.css*/
 
-.cart-items {
-
-    border-radius: 50%;
-    background-color: rgb(20, 158, 105);
-    font-weight: 700;
-    color: aliceblue;
-    width: 30px;
-    height: 30px;
-    font-size: 30px;
-    padding: 10px;
-    top: 10px;
-    position: relative;
-    left: 30px;
+/* header */
+/* Global fix to prevent scroll bar due to cart icon overflow */
+body {
+  margin: 0;
+  padding-top: 100px; /* space for fixed header */
+  overflow-x: hidden;
 }
 
+/* Header container fix */
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  height: 18vh;
+}
+
+/* Inner header layout */
 .header {
-    display: flex;
-    justify-content: space-around;
-    gap:300px;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px sold #ccc;
-    background-color: beige;
-}
-
-.cart{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 300px;
-
+  flex-wrap: wrap;
 }
 
+/* Book Store heading */
+.gfg {
+  font-size: 28px;
+  font-weight: bold;
+  color: #3f51b5;
+  margin: 0;
+}
+
+/* Nav buttons */
+.navButton {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.navButton:hover {
+  background-color: #303f9f;
+}
+
+/* Cart section */
+.cart {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.cart-num {
+  position: relative;
+}
+
+.addToCartButton,
+.removeFromCartButton {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  margin-right: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.addToCartButton:hover,
+.removeFromCartButton:hover {
+  background-color: #303f9f;
+  transform: scale(1.05);
+}
+
+.removeFromCartButton {
+  background-color: #e53935;
+}
+
+.removeFromCartButton:hover {
+  background-color: #c62828;
+}
+
+/* Main wrapper remains mostly the same */
+.cart-page-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden; /* Prevent double scrollbar */
+}
+
+.cart-page {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh; /* LIMIT HEIGHT */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Scroll only the item list */
+.cart-items-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Ensure total and buttons are visible */
+.cart-summary {
+  margin-top: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Scrollbar styling (optional) */
+.cart-items-list::-webkit-scrollbar {
+  width: 6px;
+}
+.cart-items-list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+.cart-items-list::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+.cart-item-image{
+    width: 100px;
+}
+
+.cart-items{
+    border: #1A1A1A;
+    background-color:black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    color: white;
+}
 /* card */
 /* client/src/components/ProductItem.css */
 .product-card {
@@ -66,61 +202,194 @@
     text-align: center;
 }
 
-
-.item-card {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
+/* Product List Container */
+.prdt-list {
+    background-color: #FFFFFF;
+    padding: 32px;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
 }
 
-h2 {
+/* Book List Title */
+.prdt-list h2 {
     text-align: center;
+    color: #1A1A1A;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
+/* Filter Button Section */
 .filter-btn {
     display: flex;
-    flex-direction: row;
-    padding: 10px;
-    gap: 10px;
-   justify-content: space-around;
-
-
-}
-
-.prdt-list {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 12px;
     justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Labels and Inputs */
+.filter-btn label {
+    font-weight: 500;
+    color: #333;
+    display: flex;
     align-items: center;
+    gap: 6px;
 }
 
-.cart-num {
-    margin-bottom: 40px;
-    cursor: pointer;
+.filter-btn input,
+.filter-btn select {
+    padding: 8px;
+    border: 1px solid #CCC;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
-
-.buy-now-btn {
-    background-color: rgb(11, 162, 11);
+/* Buttons */
+.filter-btn button {
+    background-color: #3F51B5;
     color: white;
-    padding: 5px 20px;
-    border-radius: 10px;
-    font-size: 2rem;
-    top: 30%;
-    right: 10px;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn button:hover {
+    background-color: #303F9F;
+}
+
+/* Product Item List */
+.item-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Buy Now Button */
+.buy-now-btn {
+    margin-top: 40px;
+    background-color: #009688;
+    color: white;
+    padding: 12px 24px;
     text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease;
 }
 
 .buy-now-btn:hover {
-    background-color: rgb(113, 230, 113);
-    color: brown;
+    background-color: #00796B;
 }
 
-.gfg {
-    background-color: black;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
+
+
+
+
+
+/* login */
+
+.loginBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh; /* Full screen height */
+    background-color: #f0f0f0; /* Light neutral background */
 }
+
+.login {
+    background-color: #fffaf0; /* Light card background */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    gap: 15px;
+}
+
+.login input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.login button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login button:hover {
+    background-color: #0056b3;
+}
+
+
+/* signup */
+
+.signupBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    background-color: #f0f0f0;
+}
+
+.signup {
+    background-color: #fffaf0;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    gap: 15px;
+}
+
+.signup input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.signup button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup button:hover {
+    background-color: #0056b3;
+}
+
+
+

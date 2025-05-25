@@ -33,11 +33,11 @@ const ProductItem = ({ product }) => {
 					{product.author}
 				</p>
 
-				<button onClick={() => handleAddToCart(product)}>
+				<button onClick={() => handleAddToCart(product)} className="addToCartButton">
 					Add to Cart
 				</button>
 
-				<button onClick={() => handleRemoveToCart(product)}>-</button>
+				<button onClick={() => handleRemoveToCart(product)} className="removeFromCartButton">-</button>
 			</div>
 		</div>
 	);
