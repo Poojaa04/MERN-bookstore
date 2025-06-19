@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Signup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [username, setUsername] = useState("");
 	const navigate = useNavigate();
 
 	const handleSignup = async (e) => {
@@ -26,6 +27,12 @@ const Signup = () => {
 		<div className="signupBody">
 			<form className="signup" onSubmit={handleSignup}>
 				<h2>Signup</h2>
+				<input
+				type="text"
+				placeholder="Enter your Full Name"
+				value={username}
+				onChange={(e)=>setUsername(e.target.value)}
+				/>
 				<input
 					type="email"
 					value={email}
