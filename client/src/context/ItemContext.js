@@ -78,7 +78,7 @@ function CustomItemContext({ children }) {
 				updateQuantity,
 				itemsInCart,
 				totalPrice,
-				cartItems: cart, // ✅ Exposed for CartPage.js
+				cartItems: cart, 
 			}}
 		>
 			{children}
