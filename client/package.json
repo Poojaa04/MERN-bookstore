@@ -1,6 +1,6 @@
 {
-  "homepage": "https://poojaa04.github.io/MERN-bookstore",
   "name": "client",
+  "homepage": "/MERN-bookstore",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
