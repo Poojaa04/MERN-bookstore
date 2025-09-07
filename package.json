@@ -1,0 +1,13 @@
+{
+  "name": "MERN-bookstore",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": "18.x" },
+  "scripts": {
+    "start": "node server/server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
