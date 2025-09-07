@@ -12,7 +12,7 @@ function CustomItemContext({ children }) {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch(`${process.env.REACT_APP_API_URL}/api/books`);
+			const response = fetch("http://localhost:5000/api/books");
             const products = await response.json();
 			console.log(products);
 			setProducts(products);
